@@ -1,15 +1,11 @@
-﻿using Sitecore.Form.Core.Pipelines.ProcessMessage;
+﻿using Sitecore.WFFM.Abstractions.Mail;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
-using System.Web;
 
 namespace Sitecore.Support.Form.Core.Pipelines.ProcessMessage
 {
     public class ProcessMessage
     {
-
         private MailMessage GetMail(ProcessMessageArgs args)
         {
             MailMessage mail = new MailMessage(args.From.Replace(";", ","), args.To.Replace(";", ",").ToString(), args.Subject.ToString(), args.Mail.ToString())
@@ -37,6 +33,7 @@ namespace Sitecore.Support.Form.Core.Pipelines.ProcessMessage
             });
             return mail;
         }
+
         public void SendEmail(ProcessMessageArgs args)
         {
             SmtpClient client = new SmtpClient(args.Host)
@@ -50,6 +47,5 @@ namespace Sitecore.Support.Form.Core.Pipelines.ProcessMessage
             client.Credentials = args.Credentials;
             client.Send(this.GetMail(args));
         }
-
     }
 }
