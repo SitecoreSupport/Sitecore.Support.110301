@@ -59,7 +59,7 @@ namespace Sitecore.Support.Form.Core.Pipelines.ProcessMessage
             {
                 EnableSsl = args.EnableSsl
             };
-            if (_MaxIdleTime != -1)
+            if (MaxIdleTime != -1)
             {
                 client.ServicePoint.MaxIdleTime = _MaxIdleTime;
             }
